@@ -1,0 +1,136 @@
+<div>
+  <div class="tab-container">
+    <button
+      class="tab-button"
+      [ngClass]="{ active: selectedTab === 'inbox' }"
+      (click)="selectedTab = 'inbox'"
+    >
+      <h3 style="margin: 0; padding: 0">Inbox <i class="fa fa-inbox"></i></h3>
+    </button>
+    <button
+      class="tab-button"
+      [ngClass]="{ active: selectedTab === 'processing' }"
+      (click)="selectedTab = 'processing'"
+    >
+      <h3 style="margin: 0; padding: 0">
+        Processing <i class="fa fa-bookmark"></i>
+      </h3>
+    </button>
+    <button
+      class="tab-button"
+      [ngClass]="{ active: selectedTab === 'notifications' }"
+      (click)="selectedTab = 'notifications'"
+    >
+      <h3 style="margin: 0; padding: 0">
+        Notifications <i class="fas fa-bell"></i>
+      </h3>
+    </button>
+    <div class="tab-indicator" [ngStyle]="getIndicatorStyle()"></div>
+  </div>
+  <div [ngSwitch]="selectedTab">
+    <div *ngSwitchCase="'inbox'" class="results-table-container">
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>Position</th>
+            <th>Source</th>
+            <th>Title</th>
+            <th>Snippet</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let result of searchResults; let i = index">
+            <td>{{ result.position }}</td>
+            <td>{{ result.source }}</td>
+            <td>
+              <a href="{{ result.link }}" target="_blank">{{ result.title }}</a>
+            </td>
+            <td class="snippet">{{ result.snippet }}</td>
+            <td>
+              <ng-container>
+                <button
+                  (click)="discardResult(result)"
+                  style="margin-right: 4px"
+                >
+                  <i class="fa fa-trash"></i>
+                </button>
+                <button (click)="saveResult(result)">
+                  <i class="fa fa-save"></i>
+                </button>
+              </ng-container>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="searchResults.length === 0" class="no-results">
+        <p>No search results found.</p>
+      </div>
+    </div>
+    <div *ngSwitchCase="'processing'" class="results-table-container">
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>Position</th>
+            <th>Source</th>
+            <th>Title</th>
+            <th>Snippet</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let result of savedLinks; let i = index">
+            <td>{{ result.position }}</td>
+            <td>{{ result.source }}</td>
+            <td>
+              <a href="{{ result.link }}" target="_blank">{{ result.title }}</a>
+            </td>
+            <td class="snippet">{{ result.snippet }}</td>
+            <td>
+              <ng-container>
+                <button (click)="removeFromArchived(result)">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </ng-container>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="savedLinks.length === 0" class="no-results">
+        <p>No saved links.</p>
+      </div>
+    </div>
+    <div *ngSwitchCase="'notifications'" class="results-table-container">
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>Webpage</th>
+            <th>Summary</th>
+            <th>Time</th>
+            <th>Added Text</th>
+            <th>Removed Text</th>
+            <th>View Changes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let notification of notifications; let i = index">
+            <td>
+              <a href="{{ notification.url }}" target="_blank"
+                >{{ notification.description }} - {{ notification.job_id }}</a
+              >
+            </td>
+            <td>{{ notification.summarizer }}</td>
+            <td>{{ notification.datetime | date : "yyyy-MM-dd HH:mm:ss" }}</td>
+            <td style="text-align: center">{{ notification.added_text }}</td>
+            <td style="text-align: center">{{ notification.removed_text }}</td>
+            <td style="text-align: center">
+              <a href="{{ notification.text_changes }}" target="_blank">
+                <i class="fas fa-eye"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

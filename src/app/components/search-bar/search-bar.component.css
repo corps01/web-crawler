@@ -1,0 +1,33 @@
+.search-bar-container {
+  display: flex;
+  padding: 10px 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar-input {
+  color: #495057;
+}
+
+.button {
+  display: inline-block;
+  padding: 9px 50px;
+  background-color: #2ecc71; /* Nice green color */
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border: none;
+}
+
+.button:hover {
+  background-color: #27ae60; /* Darker green for hover effect */
+}

@@ -1,0 +1,25 @@
+<form (ngSubmit)="onSubmit()">
+  <div class="search-bar-container">
+    <div class="input-container">
+      <div class="search-bar-input">
+        <label class="search-bar-title">State:</label>
+        <ng-select
+          [items]="states"
+          bindLabel="name"
+          [(ngModel)]="selectedState"
+          (change)="onStateSelect($event)"
+          name="state"
+        >
+          <ng-template #ngOption let-item="item">
+            {{ item.name }}
+          </ng-template>
+        </ng-select>
+      </div>
+    </div>
+    <button type="submit" class="button">
+      <span style="margin-right: 5px">Search </span>
+      <i class="fa fa-search"></i>
+    </button>
+  </div>
+</form>
+<app-search-results></app-search-results>

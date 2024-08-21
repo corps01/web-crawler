@@ -1,0 +1,104 @@
+.results-container {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.results-table-container {
+  overflow: auto; /* Add this line */
+  max-height: calc(100vh - 290px); /* Add this line */
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+.results-table th,
+.results-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.results-table th {
+  background-color: #f4f4f4;
+  color: #333;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.results-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.results-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.results-table a {
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+.results-table a:hover {
+  text-decoration: underline;
+}
+
+.snippet {
+  font-style: italic;
+  color: #555;
+}
+
+.no-results {
+  font-size: 18px;
+  color: #777;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.tab-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 75%;
+  margin: 1rem auto;
+  border-bottom: 2px solid #ccc;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 10px 0;
+  text-align: center;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.tab-button:hover {
+  color: #007bff;
+}
+
+.tab-button.active {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.tab-indicator {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 33.333333333333336%;
+  height: 2px;
+  background-color: #007bff;
+  transition: left 0.3s ease;
+}
